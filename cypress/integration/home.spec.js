@@ -1,4 +1,4 @@
-import { TEXTS } from '../../shared/constants';
+import { TEXTS } from '../../imports/infra/constants';
 
 describe('Home', () => {
   beforeEach(() => {
