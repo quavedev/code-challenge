@@ -73,7 +73,7 @@ The page needs to be reactive -- no refresh should be needed to display the late
 
 ## How to deliver your challenge
 
-- This challenge should only be submitted via a [GitHub Classroom assignment](https://classroom.github.com/classrooms/17306668-quave-code-challenge/assignments/quave-code-challenge).
+- This challenge should only be submitted via a [GitHub Classroom assignment](https://classroom.github.com/a/fpmQzyyk).
 - Apply to a developer position sending an email to iwannajoin@quave.dev with 
     - your assignment link;
     - your resume (any format);
