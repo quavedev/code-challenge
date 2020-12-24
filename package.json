@@ -1,0 +1,32 @@
+{
+  "name": "vnext-code-challenge",
+  "private": true,
+  "scripts": {
+    "start": "meteor run --port 3020",
+    "cypress": "unset NODE_OPTIONS && cypress open",
+    "lint": "eslint .",
+    "pretjs": "prettier --write \"**/*.js\"",
+    "pretjsx": "prettier --write \"**/*.jsx\"",
+    "quality": "yarn lint && yarn pretjs && yarn pretjsx"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.6.3",
+    "meteor-node-stubs": "^0.4.1",
+    "prettier": "^1.18.2",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
+  },
+  "meteor": {
+    "mainModule": {
+      "client": "client/main.jsx",
+      "server": "server/main.js"
+    }
+  },
+  "devDependencies": {
+    "@quave/eslint-config-quave": "^1.0.3",
+    "@testing-library/cypress": "^5.0.2",
+    "babel-eslint": "^8.2.2",
+    "cypress": "^3.4.1",
+    "eslint": "^4.19.1"
+  }
+}
