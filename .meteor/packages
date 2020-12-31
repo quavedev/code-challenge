@@ -9,5 +9,7 @@ es5-shim
 ecmascript
 shell-server
 
+autopublish@1.0.7             # Publish all data to the clients (for prototyping)
+insecure@1.0.7
 static-html
-react-meteor-data
+react-meteor-data@2.0.0
