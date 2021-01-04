@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+//GENERAL IMPORTS
+import React from 'react';
 
+//MATERIAL-UI COMPONENTS
 import { Select, MenuItem } from '@material-ui/core';
+
 
 export const SelectComponent = ({ events, selectedEvent, handleSelectedEvent }) => {
 
