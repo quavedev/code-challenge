@@ -31,10 +31,7 @@ export const Person = ({ person }) => {
             {`${person.firstName} ${person.lastName}`}
           </Typography>
           {person.companyName ? (
-            <Typography
-              variant="body1"
-              color="textSecondary"
-            >
+            <Typography variant="body1" color="textSecondary">
               {`${person.title} at ${person.companyName}`}
             </Typography>
           ) : null}

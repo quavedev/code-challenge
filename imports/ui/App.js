@@ -1,4 +1,5 @@
 //GENERAL IMPORTS
+import { Meteor } from 'meteor/meteor';
 import React, { useState } from 'react';
 import { TEXTS } from '../infra/constants';
 import { Communities } from '../collections/communities';
@@ -8,15 +9,26 @@ import { useTracker } from 'meteor/react-meteor-data';
 //CUSTOM COMPONENTS
 import { SelectComponent } from '../../client/components/SelectComponent';
 import { Attendees } from '../../client/components/Attendees';
-import { AppBar } from '../../client/components/AppBar';
+import { SummaryBar } from '../../client/components/SummaryBar';
 
 
 export const App = () => {
-  const events = useTracker(() => Communities.find().fetch());
   const [selectedEvent, setSelectedEvent] = useState("");
-  const handleSelectedEvent = e => setSelectedEvent(e.target.value);
+  const events = useTracker(() => {
+    Meteor.subscribe('communities');
+
+    const events = Communities.find().fetch();
+
+    return events;
+  });
   
-  const people = useTracker(() => People.find({ communityId: selectedEvent }).fetch());
+  const people = useTracker(() => {
+    Meteor.subscribe('people');
+
+    const people = People.find({ communityId: selectedEvent }).fetch();
+
+    return people;
+  });
   
   return (
     <div>
@@ -25,11 +37,11 @@ export const App = () => {
         <SelectComponent 
           events={events}
           selectedEvent={selectedEvent}
-          handleSelectedEvent={handleSelectedEvent}
+          setSelectedEvent={setSelectedEvent}
         />
       </header>
       <main>
-        <AppBar people={people} />
+        <SummaryBar people={people} />
         <Attendees people={people} />
       </main>
     </div>

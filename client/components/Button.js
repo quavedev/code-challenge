@@ -1,6 +1,6 @@
 //GENERAL IMPORTS
+import { Meteor } from 'meteor/meteor';
 import React, { useState, useEffect } from 'react';
-import { handleCheckIn } from '../../imports/infra/handleCheckIn';
 import clsx from 'clsx';
 
 //MATEIRAL-UI COMPONENTS
@@ -26,29 +26,34 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+//METHODS
+const handleCheckIn = _id => Meteor.call('people.setCheckIn', _id);
+
 export const ButtonComponent = ({ person }) => {
   const classes = useStyles();
   const [className, setClassName] = useState('');
-  const handleButton = () => {
+  const handleButtonBackground = () => {
     setClassName(classes.disabled);
 
     if (person.checkedIn === true) {
       setTimeout(() => {
         setClassName(classes.checkInButton);
       }, 5000);
-    } else {
-      setTimeout(() => {
-        setClassName(classes.checkOutButton);
-      }, 5000);
+      return;
     }
+
+    setTimeout(() => {
+      setClassName(classes.checkOutButton);
+    }, 5000);
   };
 
   useEffect(() => {
     if (person.checkedIn === true) {
       setClassName(classes.checkOutButton);
-    } else {
-      setClassName(classes.checkInButton);
+      return;
     }
+
+    setClassName(classes.checkInButton);
   }, []);
 
   return (
@@ -57,7 +62,7 @@ export const ButtonComponent = ({ person }) => {
       className={clsx(className, classes.button)}
       startIcon={<Check />}
       onClick={() => {
-        handleButton();
+        handleButtonBackground();
         handleCheckIn(person._id);
       }}
     >
