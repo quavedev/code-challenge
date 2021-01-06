@@ -7,9 +7,9 @@ import { People } from '../collections/people';
 import { useTracker } from 'meteor/react-meteor-data';
 
 //CUSTOM COMPONENTS
-import { SelectComponent } from '../../client/components/SelectComponent';
-import { Attendees } from '../../client/components/Attendees';
-import { SummaryBar } from '../../client/components/SummaryBar';
+import { SelectComponent } from './SelectComponent';
+import { Attendees } from './Attendees';
+import { SummaryBar } from './SummaryBar';
 
 
 export const App = () => {
@@ -32,7 +32,7 @@ export const App = () => {
   
   return (
     <div>
-      <header>
+      <header className="header">
         <h1>{TEXTS.HOME_TITLE}</h1>
         <SelectComponent 
           events={events}

@@ -9,7 +9,7 @@ import { Button } from '@material-ui/core';
 import Check from '@material-ui/icons/Check';
 
 //STYLES
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   button: {
     color: '#FFF',
     fontSize: '12',
@@ -23,6 +23,8 @@ const useStyles = makeStyles(theme => ({
   },
   disabled: {
     opacity: '.5',
+    backgroundColor: 'yellow',
+    color: '#333'
   },
 }));
 
