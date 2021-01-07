@@ -67,3 +67,24 @@ main{
   color: #5f9ea0;
   margin-right: .2rem;
 }
+
+
+@media screen and (max-width: 450px) {
+  .summary{
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+  .summary__title{
+    font-size: .9rem;
+  }
+  .companies__collapse{
+    grid-area: unset;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .companies{
+    display: flex;
+    flex-direction: column;
+  }
+}

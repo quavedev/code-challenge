@@ -90,7 +90,7 @@ export const SummaryBar = ({ people }) => {
         </IconButton>
       </div>
       <Collapse
-        className={classes.companiesCollapse}
+        className={clsx(classes.companiesCollapse, 'companies__collapse')}
         in={expanded}
         timeout="auto"
         unmountOnExit
