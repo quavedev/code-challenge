@@ -3,6 +3,10 @@ import { check } from 'meteor/check';
 import { People } from '../collections/people';
 
 Meteor.methods({
+  //THIS METHOD WILL BE CALLED WHEN THE USER CLICKS THE CHECK-IN BUTTON. 
+  //IT RECEIVES AN ID, CHECKS IF THE ID IS OF TYPE STRING, 
+  //QUERIES THE PEOPLE COLLECTION FOR A DOCUMENT MATCHING THE ID, 
+  //AND FINALLY UPDATES THE DOCUMENT WITH A PROPERTY 'CHECKEDIN' TRUE OR FALSE
   'people.setCheckIn'(personId) {
     check(personId, String);
 

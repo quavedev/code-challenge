@@ -9,7 +9,7 @@ import { Button } from '@material-ui/core';
 import Check from '@material-ui/icons/Check';
 
 //STYLES
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   button: {
     color: '#FFF',
     fontSize: '12',
@@ -23,6 +23,8 @@ const useStyles = makeStyles(theme => ({
   },
   disabled: {
     opacity: '.5',
+    backgroundColor: 'yellow',
+    color: '#333'
   },
 }));
 
@@ -31,8 +33,11 @@ const handleCheckIn = _id => Meteor.call('people.setCheckIn', _id);
 
 export const ButtonComponent = ({ person }) => {
   const classes = useStyles();
+
   const [className, setClassName] = useState('');
+
   const handleButtonBackground = () => {
+    // CONTROLS THE TRANSITIONS BETWEEN CHECK-IN AND CHECK-OUT CLICKS
     setClassName(classes.disabled);
 
     if (person.checkedIn === true) {
