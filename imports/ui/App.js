@@ -41,7 +41,7 @@ export const App = () => {
         />
       </header>
       <main>
-        <SummaryBar people={people} />
+        <SummaryBar people={people} selectedEvent={selectedEvent} />
         <Attendees people={people} />
       </main>
     </div>
