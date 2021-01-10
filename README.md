@@ -73,12 +73,6 @@ The page needs to be reactive -- no refresh should be needed to display the late
 
 ## How to deliver your challenge
 
-- This challenge should only be submitted via a [GitHub Classroom assignment](https://classroom.github.com/a/fpmQzyyk).
-- Apply to a developer position sending an email to iwannajoin@quave.dev with 
-    - your assignment link;
-    - your resume (any format);
-    - your GitHub username;
-    - your desired position; 
-    - your desired yearly income in Dollar;
-    - why we should hire you (one short sentence).
-- Our team will review your submission and provide feedback via PR or email.
+- This challenge should only be completed via a [GitHub Classroom assignment](https://classroom.github.com/a/fpmQzyyk).
+- Is your solution ready to be reviewed? So respond to this form https://forms.gle/aJAQMzdJ3Wm48gbU9
+- Our team will review your submission and provide feedback via PR or email in 15 work days.
