@@ -6,7 +6,7 @@ Do you want to join quave as a developer? Great. Read this document and then sub
 
 - [Install Meteor](https://www.meteor.com/install)
 
-If you are new to Meteor we recommend this [tutorial](react-tutorial.meteor.com).
+If you are new to Meteor we recommend this [tutorial](https://react-tutorial.meteor.com).
 
 ## Challenge setup
 
