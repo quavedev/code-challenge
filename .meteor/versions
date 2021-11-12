@@ -25,6 +25,7 @@ es5-shim@4.8.0
 fetch@0.1.1
 geojson-utils@1.0.10
 hot-code-push@1.0.4
+hot-module-replacement@0.4.0
 html-tools@1.1.2
 htmljs@1.1.1
 id-map@1.1.1
@@ -41,6 +42,7 @@ mobile-status-bar@1.1.0
 modern-browsers@0.1.7
 modules@0.17.0
 modules-runtime@0.12.0
+modules-runtime-hot@0.14.0
 mongo@1.13.0
 mongo-decimal@0.1.2
 mongo-dev-server@1.1.0
