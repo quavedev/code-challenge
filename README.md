@@ -19,20 +19,19 @@ If you are new to Meteor we recommend this [tutorial](https://react-tutorial.met
 ### How to install dependencies
 
 ```bash
-meteor npm install -g yarn
-meteor yarn install
+meteor npm install
 ```
 
 ### How to run
 
 ```bash
-meteor yarn start
+meteor npm start
 ```
 
 ### How to run tests
 
 ```bash
-meteor yarn cypress
+meteor npm run cypress
 ```
 
 ## What you need to deliver

@@ -1,3 +1,4 @@
+/* global cy context */
 import { TEXTS } from '../../imports/infra/constants';
 
 describe('Home', () => {
