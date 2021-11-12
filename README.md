@@ -4,9 +4,11 @@ Do you want to join quave as a developer? Great. Read this document and then sub
 
 ## Machine setup
 
-- [Install Meteor](https://www.meteor.com/install)
+- [Instalal Node.js](https://nodejs.org/en/download/)
+  - [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) is the best way to install Node.js
+- [Install Meteor](https://www.meteor.com/developers/install)
 
-If you are new to Meteor we recommend this [tutorial](https://react-tutorial.meteor.com).
+If you are new to Meteor we recommend this [tutorial](https://react-tutorial.meteor.com) for you to get familiar with it.
 
 ## Challenge setup
 
@@ -47,7 +49,7 @@ The list of people should allow the event host to:
 
 - see first and last name together (full name), company name, title, check-in date, and check-out date both using `MM/DD/YYYY, HH:mm` format or `N/A`;
 - check people into the event by clicking the "Check-in {person firstName and lastName}" button;
-- if the user was checked-in over five seconds ago, we want to see a "Check-out {person firstName and lastName}" check-out button .
+- if the user was checked-in over five seconds ago, we want to see a "Check-out {person firstName and lastName}" check-out button.
 
 Between the event selector and the list of people we want to see a summary like this:
 
@@ -75,5 +77,5 @@ The page needs to be reactive -- no refresh should be needed to display the late
 ## How to deliver your challenge
 
 - This challenge should only be completed via a [GitHub Classroom assignment](https://classroom.github.com/a/fpmQzyyk).
-- Is your solution ready to be reviewed? So respond to this form https://forms.gle/aJAQMzdJ3Wm48gbU9
+- Is your solution ready to be reviewed? So respond to this [form](https://forms.gle/aJAQMzdJ3Wm48gbU9).
 - Our team will review your submission and provide feedback via PR or email in 15 work days.
