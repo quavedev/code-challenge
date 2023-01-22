@@ -1,5 +1,5 @@
 /* global cy context */
-import { TEXTS } from '../../imports/infra/constants';
+import { Texts } from '../../infra/constants';
 
 describe('Home', () => {
   beforeEach(() => {
@@ -7,8 +7,8 @@ describe('Home', () => {
   });
 
   context('Check integrity', () => {
-    it('h1 is correct', () => {
-      cy.queryByText(TEXTS.HOME_TITLE).should('exist');
+    it('Check in title is correct', () => {
+      cy.findByText(Texts.HOME_TITLE).should('exist');
     });
   });
 });

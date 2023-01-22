@@ -1,3 +1,3 @@
-export const TEXTS = {
+export const Texts = {
   HOME_TITLE: 'Event Check-in',
 };

@@ -2,7 +2,7 @@
   "name": "quave-code-challenge",
   "private": true,
   "scripts": {
-    "start": "meteor run --port 3020",
+    "start": "meteor run --port 3020 --exclude-archs web.browser.legacy,web.cordova",
     "cypress": "unset NODE_OPTIONS && cypress open",
     "lint": "eslint .",
     "pretjs": "prettier --write \"**/*.js\"",
@@ -23,9 +23,9 @@
   },
   "devDependencies": {
     "@quave/eslint-config-quave": "^1.0.7",
-    "@testing-library/cypress": "^5.0.2",
+    "@testing-library/cypress": "^9.0.0",
     "babel-eslint": "^8.2.2",
-    "cypress": "^3.4.1",
+    "cypress": "^12.3.0",
     "eslint": "^4.19.1"
   },
   "eslintConfig": {
