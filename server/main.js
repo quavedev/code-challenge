@@ -10,20 +10,22 @@ Meteor.startup(() => {
 
   // YOU CAN DO WHATEVER YOU WANT HERE
 
+  // Returning communities to the front
   Meteor.publish('communities', function() {
     return Communities.find();
   });
 
+  // Returning people to the front
   Meteor.publish('people', function() {
     return People.find();
   });
 
+  // Returning checks to the front
   Meteor.publish('checkIns', function() {
     return CheckIns.find();
   });
 
-  CheckIns.remove({});
-
+  // allowing to update and insert
   CheckIns.allow({
     insert: () => true,
 

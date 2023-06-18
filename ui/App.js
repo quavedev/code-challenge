@@ -67,14 +67,14 @@ export const App = () => {
 
   // Dealing with check-in
   const checkInPerson = person => {
-    const checkOutRecord = CheckIns.findOne({ personId: person._id });
+    const checkInRecord = CheckIns.findOne({ personId: person._id });
 
-    if (!checkOutRecord) {
+    if (!checkInRecord) {
       CheckIns.insert({ personId: person._id, checkInDate: new Date() });
     }
 
-    if (checkOutRecord) {
-      CheckIns.update(checkOutRecord._id, {
+    if (checkInRecord) {
+      CheckIns.update(checkInRecord._id, {
         $set: { checkInDate: new Date() },
       });
     }
@@ -82,19 +82,19 @@ export const App = () => {
 
   // Dealing with check-out
   const checkOutPerson = person => {
-    const checkInRecord = CheckIns.findOne({
+    const checkOutRecord = CheckIns.findOne({
       personId: person._id,
     });
 
-    if (!checkInRecord) {
-      CheckIns.insert(checkInRecord._id, {
+    if (!checkOutRecord) {
+      CheckIns.insert(checkOutRecord._id, {
         personId: person._id,
         checkOutDate: new Date(),
       });
     }
 
-    if (checkInRecord) {
-      CheckIns.update(checkInRecord._id, {
+    if (checkOutRecord) {
+      CheckIns.update(checkOutRecord._id, {
         $set: { checkOutDate: new Date() },
       });
     }
@@ -117,6 +117,11 @@ export const App = () => {
         // checking for an even more recent check in
         if (moment(checkIn.checkInDate).isAfter(checkIn.checkOutDate)) {
           summary.peopleInEvent++;
+
+          if (!Object.prototype.hasOwnProperty.call(person, 'companyName')) {
+            return;
+          }
+
           // setting up people count per company
           if (person.companyName) {
             summary.peopleByCompany[person.companyName] =
@@ -148,6 +153,7 @@ export const App = () => {
         } else {
           // The person recently checked in, increment the number of people at the event
           summary.peopleInEvent++;
+
           //  setting up people count per company
           if (person.companyName) {
             summary.peopleByCompany[person.companyName] =
