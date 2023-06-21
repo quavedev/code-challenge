@@ -191,9 +191,13 @@ export const App = () => {
   return (
     <div className=" flex justify-center items-center flex-col">
       <Dropdown communities={trackedCommunities} onSelect={handleSelectEvent} />
-      {selectedEvent ? <Summary {...propsSummary} /> : null}
-      {selectedEvent ? <SearchBar searchFunction={handleSearch} /> : null}
-      {selectedEvent ? <PersonCard {...propsPersonCard} /> : null}
+      {selectedEvent ? (
+        <React.Fragment>
+          <Summary {...propsSummary} />
+          <SearchBar searchFunction={handleSearch} />
+          <PersonCard {...propsPersonCard} />
+        </React.Fragment>
+      ) : null}
     </div>
   );
 };

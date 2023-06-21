@@ -26,6 +26,7 @@ export const PersonCard = ({ checkIn, checkOut, people, checkIns }) => {
   return (
     <div className="grid mx-auto max-w-86rem grid-cols-desk-card auto-rows-r-36 gap-4 mt-8">
       {people?.map(person => {
+        // variables to properly split and display large strings
         const splitPeople = person.companyName?.split(' ');
 
         const splitTitle = person.title?.split(' ');
@@ -96,7 +97,7 @@ export const PersonCard = ({ checkIn, checkOut, people, checkIns }) => {
                 </svg>
 
                 {person.title
-                  ? person.title > 26
+                  ? person.title.length > 30
                     ? `${splitTitle[0]} ${splitTitle[1]}`
                     : person.title
                   : 'N/A'}
