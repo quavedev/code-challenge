@@ -1,4 +1,6 @@
 import React, { useState, useMemo } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Dropdown } from './components/Dropdown/Dropdown';
 import { PersonCard } from './components/PersonCard/PersonCard';
 import { Meteor } from 'meteor/meteor';
@@ -6,8 +8,6 @@ import { useTracker } from 'meteor/react-meteor-data';
 import { Communities } from '../communities/communities';
 import { People } from '../people/people';
 import { Summary } from './components/Summary/Summary';
-import { CheckIns } from '../checkins/checkins';
-import moment from 'moment';
 import { SearchBar } from './components/SearchBar/SearchBar';
 
 export const App = () => {
@@ -19,10 +19,17 @@ export const App = () => {
     communities: trackedCommunities,
     isLoadingCommunities: isLoadingCommun,
   } = useTracker(() => {
-    const communitiesHandle = Meteor.subscribe('communities');
-    const isLoadingCommunities = !communitiesHandle.ready();
-    const communities = Communities.find().fetch();
-    return { communities, isLoadingCommunities };
+    try {
+      const communitiesHandle = Meteor.subscribe('communities');
+      const isLoadingCommunities = !communitiesHandle.ready();
+
+      const communities = Communities.find().fetch();
+      return { communities, isLoadingCommunities, error: null };
+    } catch (error) {
+      toast.error('An error occurred while loading community data');
+
+      return { communities: [], isLoadingCommunities: false, error };
+    }
   });
 
   // Subscribing and fetch people data for the selected event
@@ -30,21 +37,22 @@ export const App = () => {
     people: trackedPeople,
     isLoadingPeople: isLoadingPersons,
   } = useTracker(() => {
-    const peopleHandle = selectedEvent ? Meteor.subscribe('people') : null;
-    const isLoadingPeople = peopleHandle && !peopleHandle.ready();
-    const people = selectedEvent
-      ? People.find({ communityId: selectedEvent._id }).fetch()
-      : [];
-    return { people, isLoadingPeople };
-  });
+    try {
+      const peopleHandle = selectedEvent
+        ? Meteor.subscribe('people', selectedEvent._id)
+        : null;
 
-  // Subscribing and fetch check-ins data to handle records in the events
-  const { checkIns: trackedChecked, isLoadingCheckins } = useTracker(() => {
-    const checkinsHandle = Meteor.subscribe('checkIns');
-    const isLoadingcheckins = checkinsHandle && !checkinsHandle.ready();
-    const checkIns = CheckIns.find().fetch();
+      const isLoadingPeople = peopleHandle && !peopleHandle.ready();
+      const people = selectedEvent
+        ? People.find({ communityId: selectedEvent._id }).fetch()
+        : [];
 
-    return { checkIns, isLoadingcheckins };
+      return { people, isLoadingPeople };
+    } catch (error) {
+      toast.error('An error occurred while loading people data');
+
+      return { people: [], isLoadingPeople: false };
+    }
   });
 
   const handleSearch = searchValue => {
@@ -67,113 +75,122 @@ export const App = () => {
 
   // Dealing with check-in
   const checkInPerson = person => {
-    const checkInRecord = CheckIns.findOne({ personId: person._id });
-
-    if (!checkInRecord) {
-      CheckIns.insert({ personId: person._id, checkInDate: new Date() });
-    }
-
-    if (checkInRecord) {
-      CheckIns.update(checkInRecord._id, {
-        $set: { checkInDate: new Date() },
-      });
-    }
+    Meteor.call('checkInPerson', person._id, (error, result) => {
+      if (error) {
+        // Handle and display the error to the user
+        toast.error('Error checking in'); // Show error toast
+      } else {
+        // Display a success message to the user
+        toast.success(result);
+      }
+    });
   };
 
   // Dealing with check-out
   const checkOutPerson = person => {
-    const checkOutRecord = CheckIns.findOne({
-      personId: person._id,
+    Meteor.call('checkOutPerson', person._id, (error, result) => {
+      if (error) {
+        // Handle and display the error to the user
+        toast.error('Error checking in');
+      } else {
+        // Display a success message to the user
+        toast.success(result);
+      }
     });
+  };
 
-    if (!checkOutRecord) {
-      CheckIns.insert(checkOutRecord._id, {
-        personId: person._id,
-        checkOutDate: new Date(),
-      });
+  const initialSummary = {
+    peopleInEvent: 0,
+    peopleByCompany: {},
+    uncheckedPeople: 0,
+  };
+
+  const incrementPeopleInEvent = summary => ({
+    ...summary,
+    peopleInEvent: summary.peopleInEvent + 1,
+  });
+
+  const decrementPeopleInEvent = summary => ({
+    ...summary,
+    peopleInEvent: Math.max(0, summary.peopleInEvent - 1),
+    uncheckedPeople: summary.uncheckedPeople + 1,
+  });
+
+  const incrementCompanyCount = (summary, companyName) => {
+    if (companyName === undefined) {
+      return summary;
     }
 
-    if (checkOutRecord) {
-      CheckIns.update(checkOutRecord._id, {
-        $set: { checkOutDate: new Date() },
-      });
+    return {
+      ...summary,
+      peopleByCompany: {
+        ...summary.peopleByCompany,
+        [companyName]: (summary.peopleByCompany[companyName] || 0) + 1,
+      },
+    };
+  };
+
+  const decrementCompanyCount = (summary, companyName) => {
+    if (companyName === undefined) {
+      return summary;
     }
+
+    const updatedCompanyCounts = {
+      ...summary.peopleByCompany,
+    };
+
+    if (updatedCompanyCounts[companyName] === 1) {
+      delete updatedCompanyCounts[companyName];
+    } else if (updatedCompanyCounts[companyName]) {
+      updatedCompanyCounts[companyName]--;
+    }
+
+    return {
+      ...summary,
+      peopleByCompany: updatedCompanyCounts,
+    };
   };
 
   // Preparing summary information
-  const calculateSummary = (people, checkins) => {
-    const summary = {
-      peopleInEvent: 0,
-      peopleByCompany: {},
-      uncheckedPeople: 0,
-    };
-
-    people.forEach(person => {
-      const checkIn = checkins?.find(
-        checkin => checkin.personId === person._id
-      );
-
-      if (checkIn) {
-        // checking for an even more recent check in
-        if (moment(checkIn.checkInDate).isAfter(checkIn.checkOutDate)) {
-          summary.peopleInEvent++;
-
-          if (!Object.prototype.hasOwnProperty.call(person, 'companyName')) {
-            return;
-          }
-
-          // setting up people count per company
-          if (person.companyName) {
-            summary.peopleByCompany[person.companyName] =
-              (summary.peopleByCompany[person.companyName] || 0) + 1;
-          }
-          return;
-        }
-
-        if (checkIn.checkOutDate) {
-          if (!Object.prototype.hasOwnProperty.call(person, 'companyName')) {
-            summary.uncheckedPeople++;
-            return;
-          }
-          if (summary.peopleInEvent > 0) {
-            summary.peopleInEvent--;
-
-            // setting up people count per company
-            if (person.companyName) {
-              summary.peopleByCompany[person.companyName] =
-                (summary.peopleByCompany[person.companyName] || 0) - 1;
-              // Remove the company if its representatives in the event reach 0
-              if (summary.peopleByCompany[person.companyName] === 0) {
-                delete summary.peopleByCompany[person.companyName];
-              }
-            }
-          }
-
-          summary.uncheckedPeople++;
-        } else {
-          // The person recently checked in, increment the number of people at the event
-          summary.peopleInEvent++;
-
-          //  setting up people count per company
-          if (person.companyName) {
-            summary.peopleByCompany[person.companyName] =
-              (summary.peopleByCompany[person.companyName] || 0) + 1;
-          }
-        }
-      } else {
-        // The person has not checked in
-        summary.uncheckedPeople++;
+  const calculateSummary = people => {
+    // handling checkout in a first iteration to avoid unwanted checkin overrides
+    const processedPeople = people?.reduce((summary, person) => {
+      if (person.checkedOut) {
+        return decrementCompanyCount(
+          decrementPeopleInEvent(summary),
+          person.companyName
+        );
       }
-    });
 
-    return summary;
+      if (!person.checkOutDate && !person.checkInDate) {
+        return {
+          ...summary,
+          uncheckedPeople: summary.uncheckedPeople + 1,
+        };
+      }
+
+      return summary;
+    }, initialSummary);
+
+    const finalSummary = people?.reduce((summary, person) => {
+      if (person.checkedIn) {
+        return incrementCompanyCount(
+          incrementPeopleInEvent(summary),
+          person.companyName
+        );
+      }
+
+      return summary;
+    }, processedPeople);
+
+    return finalSummary;
   };
 
   const handleSelectEvent = event => {
     setSelectedEvent(event);
   };
 
-  const summary = calculateSummary(trackedPeople, trackedChecked);
+  const summary = calculateSummary(trackedPeople);
   const peopleByCompanyArray = Object.entries(summary.peopleByCompany);
 
   const propsSummary = {
@@ -185,7 +202,6 @@ export const App = () => {
     checkIn: checkInPerson,
     checkOut: checkOutPerson,
     people: filteredPerson || trackedPeople,
-    checkIns: trackedChecked,
   };
 
   return (

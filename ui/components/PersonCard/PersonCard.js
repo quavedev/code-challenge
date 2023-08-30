@@ -1,26 +1,42 @@
 import React, { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
 import moment from 'moment/moment';
 
-export const PersonCard = ({ checkIn, checkOut, people, checkIns }) => {
-  const [buttonClicked, setButtonClicked] = useState({});
-  const [isCheckdOut, setIsCheckOut] = useState({});
+export const PersonCard = ({ checkIn, checkOut, people }) => {
+  const [isCheckedOut, setIsCheckOut] = useState({});
 
   useEffect(() => {
-    // Retrieve the checkout status from local storage when the component mounts
-    const storedCheckOutStatus = localStorage.getItem('checkoutStatus');
+    // Retrieve the checkout status from cookies when the component mounts
+    const storedCheckOutStatus = Cookies.get('checkedoutStatus');
+
     if (storedCheckOutStatus) {
       setIsCheckOut(JSON.parse(storedCheckOutStatus));
     }
   }, []);
 
-  const handleCheckSuccess = id => {
-    setButtonClicked(prevButton => ({
-      prevButton,
-      [id]: true,
-    }));
+  useEffect(() => {
+    // Save the updated checkout status to cookies
+    Cookies.set('checkedoutStatus', JSON.stringify(isCheckedOut), {
+      domain: 'localhost',
+      expires: 7,
+      path: '/',
+    });
+  }, [isCheckedOut]);
 
-    // Save the updated checkout status to local storage
-    localStorage.setItem('checkoutStatus', JSON.stringify(isCheckdOut));
+  const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+  const handleCheckInClick = async person => {
+    // Perform the check-in operation
+    checkIn(person);
+
+    // waiting five seconds
+    await wait(5000);
+
+    // Update the state with the new check status
+    setIsCheckOut(prevState => ({
+      ...prevState,
+      [person._id]: true,
+    }));
   };
 
   return (
@@ -106,46 +122,21 @@ export const PersonCard = ({ checkIn, checkOut, people, checkIns }) => {
             <div className="data mt-8 flex justify-center flex-wrap gap-2">
               <div className="text-sm  border-2 border-gray-800 rounded-full px-2">
                 Check-in data:{' '}
-                {checkIns?.find(
-                  checkin =>
-                    checkin.personId === person._id && checkin.checkInDate
-                )
-                  ? moment(
-                      checkIns.find(checkin => checkin.personId === person._id)
-                        .checkInDate
-                    ).format('MM/DD/YYYY, HH:mm')
+                {person.checkInDate
+                  ? moment(people.checkInDate).format('MM/DD/YYYY, HH:mm')
                   : 'N/A'}
               </div>
               <div className="text-sm border-2 border-gray-800 rounded-full px-2">
                 Check-out data:{' '}
-                {checkIns?.find(
-                  checkin =>
-                    checkin.personId === person._id && checkin.checkOutDate
-                )
-                  ? moment(
-                      checkIns.find(
-                        checkin =>
-                          checkin.personId === person._id &&
-                          checkin.checkOutDate
-                      ).checkOutDate
-                    ).format('MM/DD/YYYY, HH:mm')
+                {person.checkOutDate
+                  ? moment(people.checkOutDate).format('MM/DD/YYYY, HH:mm')
                   : 'N/A'}
               </div>
-              {!isCheckdOut[person._id] ? (
+              {!isCheckedOut[person._id] ? (
                 <button
-                  className={`py-2 px-4 rounded-full text-bt font-normal bg-white text-black mt-6 tracking-wide border-4 ${
-                    buttonClicked[person.firstName] ? 'border-green-400' : ''
-                  }`}
+                  className="py-2 px-4 rounded-full text-bt font-normal bg-white text-black mt-6 tracking-wide border-4"
                   onClick={() => {
-                    checkIn(person);
-                    setTimeout(() => {
-                      setIsCheckOut(prevCheckedOut => ({
-                        ...prevCheckedOut,
-                        [person._id]: true,
-                      }));
-                      setButtonClicked(false);
-                    }, 5000);
-                    handleCheckSuccess(person._id);
+                    handleCheckInClick(person);
                   }}
                 >
                   Check-in {`${person.firstName} ${person.lastName}`}
@@ -155,8 +146,9 @@ export const PersonCard = ({ checkIn, checkOut, people, checkIns }) => {
                   className="py-2 px-4 rounded-full text-bt font-normal bg-white border-4 border-orange-500 text-black mt-6 tracking-wide"
                   onClick={() => {
                     checkOut(person);
-                    setIsCheckOut(prevCheckedOut => ({
-                      ...prevCheckedOut,
+
+                    setIsCheckOut(prevState => ({
+                      ...prevState,
                       [person._id]: false,
                     }));
                   }}
