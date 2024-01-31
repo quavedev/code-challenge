@@ -1,0 +1,39 @@
+.header {
+  color: #fff;
+  height: 15vh;
+  padding-inline: 48px;
+  line-height: 64px;
+  background-color: #fff;
+  width: 100%;
+  border-bottom: 2px solid #373dcf;
+}
+
+.content {
+  height: 75vh;
+  line-height: 120px;
+  background-color: #f4f4f4;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px;
+}
+
+.footer {
+  text-align: center;
+  color: #fff;
+  height: 10vh;
+  background-color: #f4f4f4;
+  border-top: 1px solid #fff;
+}
+
+.layout {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.divider {
+  margin-top: 46px;
+}

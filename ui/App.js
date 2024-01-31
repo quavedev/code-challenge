@@ -1,8 +1,13 @@
 import React from 'react';
-import { Texts } from '../infra/constants';
+import { LayoutContent } from './components/LayoutContent';
+import { AppProvider } from './contexts';
 
-export const App = () => (
-  <div>
-    <h1>{Texts.HOME_TITLE}</h1>
-  </div>
-);
+//Organanize the App, and separate specific component with the Skeleton Layout
+
+export const App = () => {
+  return (
+    <AppProvider>
+      <LayoutContent />
+    </AppProvider>
+  );
+};

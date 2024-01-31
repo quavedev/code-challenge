@@ -1,0 +1,14 @@
+.checkInButton {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+}
+
+.card {
+  position: relative;
+  min-height: 240px;
+}
+
+.section {
+  max-width: 1500px;
+}
