@@ -3,10 +3,17 @@ import {  Select, Space } from 'antd'
 import { useTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor'
 import { Communities } from '../communities';
+import { useSummary } from '../../ui/contexts/SummaryContext';
 
 export default function CommunitiesComponent({ handleSelect }) {
+  const { dispatchSummary } = useSummary();
+
   const onChange = (value) => {
     handleSelect(value);
+    dispatchSummary({
+      type: 'add-community',
+      communityId: value
+    })
   };
 
   const {

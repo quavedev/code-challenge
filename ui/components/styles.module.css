@@ -1,19 +1,29 @@
 .header {
-  color: #fff;
+  color: #000;
   height: 15vh;
   padding-inline: 48px;
   line-height: 64px;
   background-color: #fff;
   width: 100%;
   border-bottom: 2px solid #373dcf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contentHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1500px;
 }
 
 .content {
-  height: 75vh;
+  height: 85vh;
   line-height: 120px;
   background-color: #f4f4f4;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: auto;
   display: flex;
   flex-direction: column;
   align-items: center;

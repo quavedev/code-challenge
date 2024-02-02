@@ -9,6 +9,10 @@
   min-height: 240px;
 }
 
+.disabledCard {
+  opacity: 0.6;
+}
+
 .section {
   max-width: 1500px;
 }
