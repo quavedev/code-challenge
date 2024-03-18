@@ -77,5 +77,5 @@ The page needs to be reactive -- no refresh should be needed to display the late
 ## How to deliver your challenge
 
 - This challenge should only be completed via a [GitHub Classroom assignment](https://classroom.github.com/a/fpmQzyyk).
-- Is your solution ready to be reviewed? So respond to this [form](https://forms.gle/aJAQMzdJ3Wm48gbU9).
+- Is your solution ready to be reviewed? So respond to this [form](https://forms.gle/m2FTwSG8bcMfhS3JA).
 - Our team will review your submission and provide feedback via PR or email in 15 work days.
