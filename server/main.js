@@ -1,9 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { loadInitialData } from '../infra/initial-data';
 
-Meteor.startup(() => {
+Meteor.startup(async () => {
   // DON'T CHANGE THE NEXT LINE
-  loadInitialData();
+  await loadInitialData();
 
   // YOU CAN DO WHATEVER YOU WANT HERE
 });

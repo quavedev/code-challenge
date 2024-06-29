@@ -1,0 +1,9 @@
+pre-commit:
+  commands:
+    quave-check:
+      run: npm run quave-check
+
+post-commit:
+  commands:
+    update-index:
+      run: git update-index --again

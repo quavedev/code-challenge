@@ -1,8 +1,7 @@
 import React from 'react';
-import { Texts } from '../infra/constants';
 
 export const App = () => (
   <div>
-    <h1>{Texts.HOME_TITLE}</h1>
+    <h1 className="text-lg font-bold">Event Check-in</h1>
   </div>
 );

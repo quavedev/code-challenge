@@ -6273,18 +6273,21 @@ const COMMUNITIES_DATA = [
   { name: 'I love code' },
 ];
 
-export const loadInitialData = () => {
-  if (Communities.find().count()) {
+export const loadInitialData = async () => {
+  if (await Communities.find().countAsync()) {
     return;
   }
-  COMMUNITIES_DATA.forEach(community => Communities.insert(community));
+  for await (const community of COMMUNITIES_DATA) {
+    await Communities.insertAsync(community);
+  }
 
-  const communities = Communities.find().fetch();
+  const communities = await Communities.find().fetchAsync();
 
-  PEOPLE_DATA.forEach((person, idx) =>
-    People.insert({
+  let idx = 0;
+  for await (const person of PEOPLE_DATA) {
+    await People.insertAsync({
       ...person,
-      communityId: communities[idx % communities.length]._id,
-    })
-  );
+      communityId: communities[idx++ % communities.length]._id,
+    });
+  }
 };
