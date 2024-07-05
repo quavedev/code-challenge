@@ -8,6 +8,7 @@
     "quave-check": "npm run quave-eslint && npm run quave-prettier"
   },
   "dependencies": {
+    "@babel/runtime": "^7.24.7",
     "meteor-node-stubs": "^1.2.9",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
