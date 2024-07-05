@@ -70,6 +70,7 @@ The page needs to be reactive -- no refresh should be needed to display the late
 
 ## Important
 
+-  We encourage the use of AI tools to generate code, but the developer needs to understand all the code generated and be able to: a) explain the code and b) explain why it's the best choice for the use case. If during the interview we realize you don't understand any part of the code you used in your solution, you will be eliminated from the process. The same applies to any question we ask during the video interview.
 -  An automatic process will check your solution. Follow the requirements closely; only submissions that pass the tests will be considered.
 -  We will not answer any questions about this challenge to ensure all submissions are fairly compared.
 
