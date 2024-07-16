@@ -46,7 +46,7 @@ mongo@2.0.0
 mongo-decimal@0.1.4-beta300.7
 mongo-dev-server@1.1.1
 mongo-id@1.0.9
-npm-mongo@4.16.2
+npm-mongo@4.17.3
 ordered-dict@1.2.0
 promise@1.0.0
 random@1.2.2
