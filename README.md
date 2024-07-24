@@ -10,11 +10,9 @@ Do you want to join Quave as a developer? Great. Read this document and then sub
 
 If you're new to Meteor, we recommend this [tutorial](https://react-tutorial.meteor.com) to get familiar with it.
 
-> This project uses Meteor 3 with Node.js 20. It's in the final release candidates as of June 29, 2024.
+> This project uses Meteor 3 with Node.js 20.
 >
-> Use the Meteor 3 docs as a reference: https://v3-docs.meteor.com/
->
-> The Quave ESLint plugin is configured to throw errors if you use the old Meteor API. We recommend using the new Meteor 3 API on the server, which is typically async.
+> Use the Meteor 3 docs as a reference: https://v3-docs.meteor.com
 
 ## Challenge setup
 
@@ -76,6 +74,6 @@ The page needs to be reactive -- no refresh should be needed to display the late
 
 ## How to deliver your challenge
 
--  Complete this challenge via a [GitHub Classroom assignment](https://classroom.github.com/a/fpmQzyyk).
+-  Complete this challenge via a [GitHub Classroom assignment](https://classroom.github.com/a/tPo4AdKE).
 -  Is your solution ready for review? Respond to this [form](https://forms.gle/m2FTwSG8bcMfhS3JA).
 -  Our team will review your submission and provide feedback via PR or email within 15 work days.
