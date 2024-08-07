@@ -1,8 +1,8 @@
 import React from 'react';
-import { EventView } from './src/EventView/index.jsx';
+import { Home } from './src/home/index.jsx';
 
 export const App = () => (
   <div className="flex h-screen grow items-center justify-center bg-neutral-900">
-    <EventView />
+    <Home />
   </div>
 );
