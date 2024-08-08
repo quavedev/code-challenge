@@ -1,10 +1,10 @@
 import { useTracker } from 'meteor/react-meteor-data';
 import React from 'react';
 import { Communities } from '../../../communities/communities';
+import { EventSelector } from '../components/EventSelector/index.jsx';
 
 export function Home() {
-  const communitiesCollection = useTracker(() => Communities.find({}).fetch());
-  // console.log('Communities: ', communitiesCollection);
+  const communities = useTracker(() => Communities.find({}).fetch());
 
   return (
     <div className="flex w-3/4 flex-col rounded-md bg-stone-200 shadow-inner">
@@ -13,7 +13,9 @@ export function Home() {
       </div>
 
       <div className="flex flex-1">
-        {/* {communities.map((community) => <p key={community.name}>{community.name}</p> )} */}
+        
+        <EventSelector communities={communities} />
+      
       </div>
     </div>
   );

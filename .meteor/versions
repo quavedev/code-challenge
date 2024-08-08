@@ -1,4 +1,5 @@
 allow-deny@2.0.0
+autopublish@1.0.8
 autoupdate@2.0.0
 babel-compiler@7.11.0
 babel-runtime@1.5.2
