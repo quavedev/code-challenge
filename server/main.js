@@ -6,4 +6,6 @@ Meteor.startup(async () => {
   await loadInitialData();
 
   // YOU CAN DO WHATEVER YOU WANT HERE
+  // const teste = await Communities.find({}).fetchAsync(); // here communites is showed
+  // console.log("COmunidades: ", teste)
 });

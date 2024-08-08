@@ -4,8 +4,7 @@ import { Communities } from '../../../communities/communities';
 
 export function Home() {
   const communitiesCollection = useTracker(() => Communities.find({}).fetch());
-
-  // console.log("Communities: ", communitiesCollection)
+  // console.log('Communities: ', communitiesCollection);
 
   return (
     <div className="flex w-3/4 flex-col rounded-md bg-stone-200 shadow-inner">
