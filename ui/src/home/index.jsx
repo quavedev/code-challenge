@@ -4,6 +4,7 @@ import { Communities } from '../../../communities/communities';
 import { EventSelector } from '../components/EventSelector/index.jsx';
 import { People } from '../../../people/people';
 import { PeopleList } from '../components/PeopleList/index.jsx';
+import { Summary } from '../components/Summary/index.jsx';
 
 export function Home() {
   const [selectedEvent, setSelectedEvent] = useState({ _id: null, name: '' });
@@ -15,7 +16,7 @@ export function Home() {
   );
 
   return (
-    <div className="flex w-9/12 flex-col  rounded-md bg-stone-200 shadow-inner">
+    <div className="flex w-9/12 flex-col rounded-md bg-stone-200 shadow-inner">
       <div className="flex-1 justify-center">
         <h1 className="text-center text-lg font-bold">Event Check-in</h1>
       </div>
@@ -25,7 +26,11 @@ export function Home() {
           communities={communities}
           setSelectedEvent={setSelectedEvent}
         />
-        
+
+        {selectedEvent._id ? (
+          <Summary peoples={peoples} communities={communities} />
+        ) : null}
+
         <PeopleList peoples={peoples} eventName={selectedEvent.name} />
       </div>
     </div>
