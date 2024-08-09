@@ -14,9 +14,6 @@ export function Home() {
     People.find({ communityId: selectedEvent._id }).fetch()
   );
 
-  // console.log("selectedEvent: ", selectedEvent)
-  // console.log("Peoples: ", peoples)
-
   return (
     <div className="flex w-3/4 flex-col rounded-md bg-stone-200 shadow-inner">
       <div className="flex-1 justify-center">
