@@ -15,7 +15,7 @@ export function Home() {
   );
 
   return (
-    <div className="flex w-3/4 flex-col rounded-md bg-stone-200 shadow-inner">
+    <div className="flex w-9/12 flex-col  rounded-md bg-stone-200 shadow-inner">
       <div className="flex-1 justify-center">
         <h1 className="text-center text-lg font-bold">Event Check-in</h1>
       </div>
@@ -25,7 +25,7 @@ export function Home() {
           communities={communities}
           setSelectedEvent={setSelectedEvent}
         />
-
+        
         <PeopleList peoples={peoples} eventName={selectedEvent.name} />
       </div>
     </div>

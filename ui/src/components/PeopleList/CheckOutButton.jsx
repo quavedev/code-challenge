@@ -38,7 +38,7 @@ export function CheckOutButton({ people, checkInDate }) {
   return (
     <button
       onClick={() => onCheckOutClick(people._id)}
-      className="rounded-lg bg-red-600 px-3 py-2 text-center text-xs font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-300"
+      className="me-2 rounded-full border-2 border-blue-200 bg-white px-2 py-2.5 text-center text-xs font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus:ring-4 focus:ring-blue-300"
     >
       Check-out: {people.firstName} {people.lastName}
     </button>
