@@ -2,15 +2,20 @@ import { useTracker } from 'meteor/react-meteor-data';
 import React, { useState } from 'react';
 import { Communities } from '../../../communities/communities';
 import { EventSelector } from '../components/EventSelector/index.jsx';
-import { People } from '../../../people/people.js';
+import { People } from '../../../people/people';
+import { PeopleList } from '../components/PeopleList/index.jsx';
 
 export function Home() {
-  const [selectedEvent, setSelectedEvent] = useState("");
-  
-  const communities = useTracker(() => Communities.find({}).fetch());
-  const people = useTracker(() => People.find({}).fetch());
+  const [selectedEvent, setSelectedEvent] = useState({ _id: null, name: '' });
 
-  // console.log("people: ", people);
+  const communities = useTracker(() => Communities.find({}).fetch());
+
+  const peoples = useTracker(() =>
+    People.find({ communityId: selectedEvent._id }).fetch()
+  );
+
+  // console.log("selectedEvent: ", selectedEvent)
+  // console.log("Peoples: ", peoples)
 
   return (
     <div className="flex w-3/4 flex-col rounded-md bg-stone-200 shadow-inner">
@@ -18,10 +23,13 @@ export function Home() {
         <h1 className="text-center text-lg font-bold">Event Check-in</h1>
       </div>
 
-      <div className="flex flex-1 flex-col">
-        
-        <EventSelector communities={communities} setSelectedEvent={setSelectedEvent} />
-      
+      <div className="flex flex-1 flex-col items-center">
+        <EventSelector
+          communities={communities}
+          setSelectedEvent={setSelectedEvent}
+        />
+
+        <PeopleList peoples={peoples} eventName={selectedEvent.name} />
       </div>
     </div>
   );
