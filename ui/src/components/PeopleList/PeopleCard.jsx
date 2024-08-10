@@ -55,7 +55,7 @@ export function PeopleCard({ people }) {
           </span>
         </div>
 
-        <div>
+        <div className="flex flex-1 justify-between mt-4">
           <button
             onClick={() => onCheckInClick(people._id)}
             className="me-2 rounded-full bg-blue-700 px-2 py-2.5 text-center text-xs font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300"
