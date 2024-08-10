@@ -16,22 +16,24 @@ export function Home() {
   );
 
   return (
-    <div className="flex w-9/12 flex-col rounded-md bg-stone-200 shadow-inner">
-      <div className="flex-1 justify-center">
-        <h1 className="text-center text-lg font-bold">Event Check-in</h1>
-      </div>
+    <div className="flex min-h-screen flex-col items-center justify-center bg-neutral-900 p-4">
+      <div className="flex max-h-full w-full max-w-4xl flex-col rounded-md bg-stone-200 p-4 shadow-inner md:w-9/12">
+        <div className="flex-1 justify-center">
+          <h1 className="text-center text-lg font-bold">Event Check-in</h1>
+        </div>
 
-      <div className="flex flex-1 flex-col items-center">
-        <EventSelector
-          communities={communities}
-          setSelectedEvent={setSelectedEvent}
-        />
+        <div className="flex flex-1 flex-col items-center">
+          <EventSelector
+            communities={communities}
+            setSelectedEvent={setSelectedEvent}
+          />
 
-        {selectedEvent._id ? (
-          <Summary peoples={peoples} communities={communities} />
-        ) : null}
+          {selectedEvent._id ? (
+            <Summary peoples={peoples} communities={communities} />
+          ) : null}
 
-        <PeopleList peoples={peoples} eventName={selectedEvent.name} />
+          <PeopleList peoples={peoples} eventName={selectedEvent.name} />
+        </div>
       </div>
     </div>
   );

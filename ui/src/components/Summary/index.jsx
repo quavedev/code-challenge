@@ -10,7 +10,7 @@ export function Summary({ peoples }) {
     filteredPeopleByCompany
   ).reduce((acc, people, index) => {
     if (!acc[index]) {
-      acc[index] = { company: people.companyName, peoples: [] };
+      acc[index] = { index, company: people.companyName, peoples: [] };
     }
     acc[index].peoples.push(people);
     return acc;
