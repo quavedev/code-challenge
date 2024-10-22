@@ -62,9 +62,7 @@ The page needs to be reactive -- no refresh should be needed to display the late
 -  Use Meteor as the builder and runner, React as the view layer, and MongoDB as the data layer.
 -  Use MongoDB embedded in Meteor; don't configure the project to access a different MongoDB URL.
 -  Style the application using TailwindCSS.
--  Do not insert new documents into the `communities` or `people` collections.
 -  Do not change `initial-data.js`.
--  You can add new dependencies.
 
 ## Important
 
