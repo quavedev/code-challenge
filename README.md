@@ -2,6 +2,18 @@
 
 Do you want to join Quave as a developer? Great. Read this document and then submit your solution. Good luck.
 
+## Required Stack
+
+Our main goal here is to see how well you use JavaScript and React. 
+
+If you want to ignore the code setup in this repo and deliver the expected web app with the same database structure, seed data, and use JavaScript (Node.js, Bun, or Deno) and React in the client, with Tailwind for styling, feel free to do so. 
+
+We recommend using our setup here so you don't waste time with setup, and we believe it's a good fit for many web apps. However, we don't want it to hinder great developers who aren't familiar with Meteor.
+
+Make sure whatever you do will work with `npm i && npm start`. We don't want to spend time learning a custom setup to run your code challenge solution. You can use anything compatible with Node.js 20 in this setup, even if not using Meteor directly.
+
+Ok, let's go. 
+
 ## Machine setup
 
 - [Install Node.js](https://nodejs.org/en/download/)
