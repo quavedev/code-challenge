@@ -1,88 +1,134 @@
 # Quave Code Challenge
 
-Do you want to join Quave as a developer? Great. Read this document and then submit your solution. Good luck.
+Want to join Quave as a developer? 
+
+Great! Read this document and submit your solution.
+
+We hire full stack developers only, so you must be comfortable with both front-end and back-end development.
+
+Good luck!
+
+# Submission
+
+## GitHub Classroom
+
+Submit your solution through this [GitHub Classroom assignment](https://classroom.github.com/a/tPo4AdKE).
+
+## Review
+
+Ready for review? Fill out this [form](https://forms.gle/m2FTwSG8bcMfhS3JA).
+
+## Feedback
+
+We'll give you feedback based on the position description. Check the timeline section in the job posting for feedback deadlines.
+
+# Code Stack and Environment
+
+## Introduction
+
+At Quave, we use Meteor.js for many clients, projects, and products.
+
+Meteor.js is a full-stack JavaScript platform that lets you build modern web and mobile apps with a single JavaScript codebase.
+
+Under the hood, Meteor.js runs on Node.js server-side, and we typically use React client-side (though Vue, Angular, Svelte, etc. also work with Meteor).
+
+Meteor.js comes with many useful core packages and Quave packages for common features like:
+- Authentication
+- Jobs
+- Migrations
+- Collections
+- Email
+- And more
+
+It's great for real-time apps, using WebSockets and DDP (Distributed Data Protocol) to sync data between client and server. All this works smoothly thanks to deep MongoDB integration.
+
+While this challenge uses Meteor.js, you can use other technologies if you prefer, with some restrictions.
 
 ## Required Stack
 
-Our main goal here is to see how well you use JavaScript and React. 
+We want to see your Javascript and React skills.
 
-If you want to ignore the code setup in this repo and deliver the expected web app with the same database structure, seed data, and use JavaScript (Node.js, Bun, or Deno) and React in the client, with Tailwind for styling, feel free to do so. 
+You can either:
+1. Use our Meteor.js setup (recommended to save time)
+2. Build the app with your preferred JavaScript runtime (Node.js, Bun, or Deno) and React
 
-We recommend using our setup here so you don't waste time with setup, and we believe it's a good fit for many web apps. However, we don't want it to hinder great developers who aren't familiar with Meteor.
+Both approaches must:
+- Use the same database structure and seed data
+- Use Tailwind for styling
+- Work with `npm i && npm start`
+- Be compatible with Node.js 20
 
-Make sure whatever you do will work with `npm i && npm start`. We don't want to spend time learning a custom setup to run your code challenge solution. You can use anything compatible with Node.js 20 in this setup, even if not using Meteor directly.
+## Machine Setup
 
-Ok, let's go. 
+1. Install Node.js
+   - Use [nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+2. Install [Meteor](https://docs.meteor.com/install.html)
 
-## Machine setup
-
-- [Install Node.js](https://nodejs.org/en/download/)
-  - Use [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) to install Node.js
-- [Install Meteor](https://docs.meteor.com/install.html)
-
-If you're new to Meteor, we recommend this [tutorial](https://react-tutorial.meteor.com) to get familiar with it.
+New to Meteor? Try this [tutorial](https://react-tutorial.meteor.com).
 
 > This project uses Meteor 3 with Node.js 20.
 >
-> Use the Meteor 3 docs as a reference: https://docs.meteor.com
+> Reference: https://docs.meteor.com
 
-## Challenge setup
-
-### Repository setup & process
-
--  Use this git repository as your starting point.
--  Once completed, remember to push your changes.
--  Submit this challenge via a GitHub Classroom assignment (read more below).
-
-### How to install dependencies
+## Install Dependencies
 
 ```bash
 meteor npm install
 ```
 
-### How to run
+## Run the App
 
 ```bash
 meteor npm start
 ```
 
-## What you need to deliver
+# Scope
 
-A mini-application that allows event hosts to check people into an event.
+## Requirements
 
-The home page should show:
+Build a mini-app for event check-ins. The home page needs:
 
--  An event selector displaying each event's name. By default, it should display `Select an event` (`communities` collection).
--  A list of people registered in the selected event (`people` collection).
+1. Event selector showing event names from the `communities` collection
+   - Default text: "Select an event"
 
-The list of people should allow the event host to:
+2. List of registered people from the `people` collection showing:
+   - Full name (first + last name)
+   - Company name
+   - Title
+   - Check-in date (MM/DD/YYYY, HH:mm or N/A)
+   - Check-out date (MM/DD/YYYY, HH:mm or N/A)
+   - "Check-in {person name}" button
+   - "Check-out {person name}" button (shows 5 seconds after check-in)
 
--  See the full name (first and last name together), company name, title, check-in date, and check-out date in the `MM/DD/YYYY, HH:mm` format or as `N/A`.
--  Check people into the event by clicking the `Check-in {person firstName and lastName}` button.
--  If the user was checked in over five seconds ago, show a `Check-out {person firstName and lastName}` button.
+3. Event summary showing:
+   - Current attendee count
+   - Company breakdown of current attendees
+   - Number of people not checked in
 
-Between the event selector and the list of people, display a summary like this:
+The page must update in real-time without refreshing.
 
--  `People in the event right now: 10`
--  `People by company in the event right now: Green Group (10), Hoppe Group (5)`
--  `People not checked in: 200`
+## Implementation Rules
 
-The page needs to be reactive -- no refresh should be needed to display the latest data.
+1. Use:
+   - JavaScript server-side (Node.js, Bun, or Deno)
+   - React for views
+   - MongoDB for data
+   - TailwindCSS for styling
 
-## Implementation rules
+2. App must:
+   - Start with `meteor npm i && meteor npm start`
+   - Run on port `3000`
+   - Use the provided `initial-data.js` seed data
 
--  Use Meteor as the builder and runner, React as the view layer, and MongoDB as the data layer.
--  Use MongoDB embedded in Meteor; don't configure the project to access a different MongoDB URL.
--  Style the application using TailwindCSS.
--  Do not change `initial-data.js`.
+# AI Tools
 
-## Important
+You can use AI tools to generate code, but you must:
+1. Understand all generated code
+2. Explain why it's the best solution
+3. Answer any related questions in the interview
 
--  We encourage the use of AI tools to generate code, but the developer needs to understand all the code generated and be able to: a) explain the code and b) explain why it's the best choice for the use case. If during the interview we realize you don't understand any part of the code you used in your solution, you will be eliminated from the process. The same applies to any question we ask during the video interview.
--  We will not answer any questions about this challenge to ensure all submissions are fairly compared.
+Not understanding your code = disqualification.
 
-## How to deliver your challenge
+# Note
 
--  Complete this challenge via a [GitHub Classroom assignment](https://classroom.github.com/a/tPo4AdKE).
--  Is your solution ready for review? Respond to this [form](https://forms.gle/m2FTwSG8bcMfhS3JA).
--  Our team will review your submission and provide feedback via PR or email within 15 work days.
+We won't answer questions about this challenge to ensure fair evaluation.
