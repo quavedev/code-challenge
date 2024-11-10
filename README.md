@@ -8,6 +8,8 @@ We hire full stack developers only, so you must be comfortable with both front-e
 
 Good luck!
 
+> Not sure if we have open positions right now? Check our [Join repository](https://github.com/quavedev/join/issues/).
+
 # Submission
 
 ## Getting Started
