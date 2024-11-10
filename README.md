@@ -62,6 +62,7 @@ You can either:
 
 Both approaches must:
 - Use the same database structure and seed data
+  - In case you are not using Meteor embedded MongoDB you can assume we will have a proper instalation of MongoDB 7 running on 27017.
 - Use Tailwind for styling
 - Work with `npm i && npm start`
 - Be compatible with Node.js 20
