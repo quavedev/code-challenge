@@ -10,13 +10,19 @@ Good luck!
 
 # Submission
 
-## GitHub Classroom
+## Getting Started
 
-Submit your solution through this [GitHub Classroom assignment](https://classroom.github.com/a/tPo4AdKE).
+First, you'll need to create your own copy of the challenge repository. We use GitHub Classroom to manage submissions, which automatically creates a private repository for you to work in.
+
+Click this [GitHub Classroom assignment link](https://classroom.github.com/a/tPo4AdKE) to create your repository. If this is your first time using GitHub Classroom, you'll need to authorize it to access your GitHub account. Once authorized, GitHub Classroom will create a new private repository containing the challenge starter code.
+
+This repository is where you'll make all your changes and submit your final solution. Unlike regular GitHub forks, this gives you a private workspace that only you and the Quave team can access.
 
 ## Review
 
 Ready for review? Fill out this [form](https://forms.gle/m2FTwSG8bcMfhS3JA).
+
+You will provide a link to your solution repository in the form and also a cover letter. In the letter you should explain why you're a great fit and what you'll bring to Quave
 
 ## Feedback
 
