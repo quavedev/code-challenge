@@ -1,9 +1,9 @@
 meteor-base@1.5.2
-mongo@2.1.0
+mongo@2.1.2
 
 standard-minifier-css@1.9.3
-standard-minifier-js@3.0.0
-ecmascript@0.16.10
+standard-minifier-js@3.1.0
+ecmascript@0.16.11
 
 static-html@1.4.0
 hot-module-replacement@0.5.4
